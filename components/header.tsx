@@ -1,4 +1,6 @@
+"use client";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -29,17 +31,28 @@ export default function Header() {
           <a href="#sobre" className="hover:text-black transition">
             Sobre
           </a>
-          <a href="#contato" className="hover:text-black transition">
-            Contato
+          <a href="/updates" className="hover:text-black transition">
+            Atualizações
           </a>
         </nav>
-        <Button
-          size="lg"
-          type="button"
-          className="bg-[#FFE301] text-black hover:bg-[#f5d900] transition-colors"
-        >
-          Comece agora
-        </Button>
+        <div className="flex flex-row gap-4 items-center text-sm text-neutral-900 font-bold">
+          <Button
+            size={"sm"}
+            type="button"
+            className="bg-white text-black hover:bg-slate-100 transition-colors border-0 shadow-none"
+          >
+            <Link href="/auth/login">Log in</Link>
+          </Button>
+          <Link href="/auth/register">
+            <Button
+              size="lg"
+              type="button"
+              className="bg-[#FFE301] text-black hover:bg-[#f5d900] transition-colors"
+            >
+              Comece agora
+            </Button>
+          </Link>
+        </div>
       </div>
     </header>
   );

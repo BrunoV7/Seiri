@@ -1,5 +1,5 @@
 
-export default function Who() {
+export default function About() {
     return (
         <section className="px-6 md:px-16 lg:px-32 py-24">
             <div className="flex flex-col gap-2 text-center">
