@@ -12,7 +12,7 @@ export default function NavBar() {
     const [isClicked, setIsClicked] = useState(false);
 
     useEffect(() => {
-        const mockUser = new User("Bruno", "Silva", "bruno.silva@example.com");
+        const mockUser = new User("Bruno", "Nobre", "bruno.silva@example.com");
         setUser(mockUser);
     }, []);
 
