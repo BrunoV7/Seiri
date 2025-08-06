@@ -23,12 +23,13 @@ export default function Footer() {
 
         <div className="text-sm text-neutral-600 flex flex-col gap-1">
           <p>整理 — Seiri: colocar as coisas em ordem.</p>
-          <div className="flex gap-4 text-neutral-500">
-            <a href="https://github.com/BrunoV7" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition">
-              GitHub
-            </a>
-            <a href="#" className="hover:text-neutral-900 transition">Política de Privacidade</a>
-          </div>
+                      <div className="flex gap-4 text-neutral-500">
+              <a href="https://github.com/BrunoV7" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition">
+                GitHub
+              </a>
+              <a href="/terms" className="hover:text-neutral-900 transition">Termos de Serviço</a>
+              <a href="/privacy" className="hover:text-neutral-900 transition">Política de Privacidade</a>
+            </div>
           <p className="text-xs mt-2 text-neutral-400">© 2025 Seiri. Projeto open source feito com ❤️ por Bruno Vieira.</p>
         </div>
       </div>

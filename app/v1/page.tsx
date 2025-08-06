@@ -2,53 +2,49 @@
 import { Icons } from "@/components/ui/icons";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import React from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { useUserContext } from "./UserContext";
 import { da, tr } from "zod/v4/locales";
 import api from "@/lib/api";
 import { toast } from "sonner";
+import { loadUser } from "@/utils/user";
 
 type User = {
-    firstName: string,
-    lastName: string,
-    email: string
-}
+  firstName: string;
+  lastName: string;
+  email: string;
+};
 
 export default function LoadingPage() {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
   const router = useRouter();
 
   const inspiringPhrases = [
-  "clareza traz tranquilidade",
-  "organizar é o primeiro passo",
-  "você no controle da sua rotina",
-  "menos caos, mais foco",
-  "cada post-it é um passo",
-  "produtividade com leveza",
-  "organizar é cuidar de si",
-  "priorize com propósito"
-];
+    "clareza traz tranquilidade",
+    "organizar é o primeiro passo",
+    "você no controle da sua rotina",
+    "menos caos, mais foco",
+    "cada post-it é um passo",
+    "produtividade com leveza",
+    "organizar é cuidar de si",
+    "priorize com propósito",
+  ];
 
   React.useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const response = await api.get("/api/v1/sc/user/info");
-      const loadedUser: User = response.data;
-      setUser(loadedUser);
-      router.push("/v1/dashboard");
-    } catch (error) {
-      toast.error(
-        "Não foi possível fazer login com o seu perfil."
-      );
-      router.push("/auth/login");
-    }
-  };
+    const fetchUser = async () => {
+      try {
+        loadUser().then((user) => {
+          if (!user) router.push("/auth/login");
+        });
+        router.push("/v1/dashboard");
+      } catch (error) {
+        toast.error("Não foi possível carregar o seu perfil.");
+        router.push("/auth/login");
+      }
+    };
 
-  fetchUser();
-}, []);
-
+    fetchUser();
+  }, []);
 
   return (
     <section className="flex flex-col items-center justify-center w-full py-24 h-dvh transition-all">
@@ -69,9 +65,7 @@ export default function LoadingPage() {
           </svg>
         </div>
         <Icons.spinner className="h-8 w-8 text-yellow-600 animate-spin drop-shadow-sm" />
-        <ContainerTextFlip
-          words={inspiringPhrases}
-        />
+        <ContainerTextFlip words={inspiringPhrases} />
       </div>
     </section>
   );

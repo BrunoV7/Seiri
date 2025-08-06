@@ -25,15 +25,17 @@ export default function Hero() {
             Comece agora
           </Button>
         </Link>
-        <Button
-          size="xl"
-          type="button"
-          className="bg-transparent border border-neutral-300 text-neutral-800 hover:bg-neutral-100 transition-colors"
-        >
-          <a href="" className="font-semibold">
-            Saiba mais
-          </a>
-        </Button>
+        <Link href="/features">
+          <Button
+            size="xl"
+            type="button"
+            className="bg-transparent border border-neutral-300 text-neutral-800 hover:bg-neutral-100 transition-colors"
+          >
+            <span className="font-semibold">
+              Saiba mais
+            </span>
+          </Button>
+        </Link>
       </div>
     </section>
   );
