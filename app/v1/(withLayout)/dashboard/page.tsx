@@ -42,21 +42,19 @@ export default function Dashboard() {
     loadBoards();
   }, []);
 
-  if (!boards) return <LoadingSkeleton />;
-
   return (
     <section className="h-full flex flex-col">
       {/* TODO: Implementar alguma feature de estatística */}
       <div></div>
-      <div className="flex flex-row p-4 gap-4 h-full">
-        <div className="flex flex-col gap-2 w-48">
+      <div className="flex flex-col md:flex-row p-4 gap-8 md:gap-4 h-full">
+        <div className="grid grid-cols-2 flex-col md:flex md:flex-col gap-2 w-full md:w-68 md:auto-rows-max">
           {Object.keys(tabs).map((key) => (
             <Button
               key={key}
               onClick={() => setActiveTab(key as keyof typeof tabs)}
-              className={` flex items-start justify-start hover:bg-gray-200 transition-colors duration-200 ${
+              className={` w-full flex items-start justify-start hover:bg-yellow-200 transition-colors duration-200 ${
                 activeTab === key
-                  ? "bg-gray-200 text-slate-800 "
+                  ? "bg-[#FFE301] text-slate-800 "
                   : "bg-gray-50 text-slate-800"
               }`}
             >
@@ -65,7 +63,7 @@ export default function Dashboard() {
           ))}
         </div>
         <motion.div
-          className="flex h-full flex-1"
+          className="flex h-9/10 flex-1"
           key={activeTab}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
