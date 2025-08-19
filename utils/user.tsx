@@ -7,10 +7,12 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
-  constructor(firstName: string, lastName: string, email: string) {
+  avatarUrl: string;
+  constructor(firstName: string, lastName: string, email: string, avatarUrl: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.avatarUrl = avatarUrl;
   }
 }
 
@@ -30,8 +32,8 @@ export function loadUserFromCookie(): User | null {
   if (!cookieData) return null;
 
   try {
-    const { firstName, lastName, email } = JSON.parse(cookieData);
-    return new User(firstName, lastName, email);
+    const { firstName, lastName, email, avatarUrl } = JSON.parse(cookieData);
+    return new User(firstName, lastName, email, avatarUrl);
   } catch (error) {
     console.error("Erro ao ler o cookie do usuário:", error);
     return null;

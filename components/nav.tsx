@@ -23,26 +23,40 @@ import { DialogClose, DialogOverlay } from "@radix-ui/react-dialog";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function NavBar() {
   const [user, setUser] = useState<User>();
   const [isClicked, setIsClicked] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchUser() {
       const loadedUser = loadUserFromCookie();
+      let finalUser: User | undefined;
+
       if (loadedUser) {
-        setUser(loadedUser);
+        finalUser = loadedUser;
       } else {
-        const loadedUserFromBackend = await loadUser(); 
+        const loadedUserFromBackend = await loadUser();
         if (loadedUserFromBackend) {
-          setUser(loadedUserFromBackend);
+          finalUser = loadedUserFromBackend;
         } else {
-          router.push('/auth/login', { scroll: false })
+          router.push("/auth/login");
+          return;
         }
       }
+
+      if (finalUser && !finalUser.avatarUrl) {
+        finalUser = {
+          ...finalUser,
+          avatarUrl: "https://avatars.githubusercontent.com/BrunoV7",
+        };
+      }
+
+      setUser(finalUser);
+      console.log("User carregado:", finalUser);
     }
     fetchUser();
   }, []);
@@ -51,7 +65,7 @@ export default function NavBar() {
 
   return (
     <div className="p-4 px-8 flex flex-row justify-between items-center bg-white border-b border-slate-200">
-      <div className="flex items-center gap-3">
+      <Link className="flex items-center gap-3" href={"/v1/dashboard"}>
         <svg
           width="28"
           height="30"
@@ -68,12 +82,20 @@ export default function NavBar() {
         <span className="font-semibold text-xl text-neutral-900 tracking-tight">
           Seiri
         </span>
-      </div>
+      </Link>
       <div className="hidden md:flex flex-row gap-4 items-center">
         <div className="flex items-center gap-3 px-2">
-          <div className="flex justify-center items-center w-9 h-9 bg-yellow-700 text-white rounded-md font-bold">
-            {user.firstName.charAt(0)}
-          </div>
+          {user.avatarUrl ? (
+            <img
+              src={user.avatarUrl}
+              alt={user.firstName}
+              className="w-9 h-9 rounded-md"
+            />
+          ) : (
+            <div className="flex justify-center items-center w-9 h-9 bg-yellow-700 text-white rounded-md font-bold">
+              {user.firstName.charAt(0)}
+            </div>
+          )}
           <div className="flex flex-col leading-tight max-w-[160px] truncate">
             <p className="text-sm font-medium truncate">
               {user.firstName} {user.lastName}
@@ -94,11 +116,11 @@ export default function NavBar() {
             <PopoverContent className="mx-8">
               <div className="flex flex-col gap-2">
                 <h2 className="text-sm leading-none font-semibold">Inbox</h2>
-                <p className="text-xs text-muted-foreground">Suas últimas mensagens</p>
+                <p className="text-xs text-muted-foreground">
+                  Suas últimas mensagens
+                </p>
               </div>
-              <div className="flex flex-col gap-2 h-9/10 overflow-y-scroll">
-
-              </div>
+              <div className="flex flex-col gap-2 h-9/10 overflow-y-scroll"></div>
             </PopoverContent>
           </Popover>
           <Dialog>

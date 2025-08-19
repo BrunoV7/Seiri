@@ -43,7 +43,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <section className="h-full flex flex-col">
+    <section className="h-full flex flex-col p-4">
       {/* TODO: Implementar alguma feature de estatística */}
       <div></div>
       <div className="flex flex-col md:flex-row p-4 gap-8 md:gap-4 h-full">

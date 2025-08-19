@@ -1,6 +1,7 @@
 
-export default async function Board({params,} : {params: Promise<{ id: string}>}){
-    const { id } = await params;
+export default async function Board(){
 
-    return <div>My Post: {id}</div>
+    return <section>
+
+    </section>
 }
