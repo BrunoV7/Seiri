@@ -10,7 +10,7 @@ export default async function Layout({
 }) {
   return (
     <BoardProvider>
-      <BoardNavBar />
+      <BoardNavBar isColab={false} />
       <main>{children}</main>
     </BoardProvider>
   );

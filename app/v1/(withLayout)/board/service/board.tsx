@@ -48,6 +48,7 @@ export type Board = {
   collumns: Column[];
 };
 
+
 const defaultBoard: Board = {
     id: "",
     title: "",
