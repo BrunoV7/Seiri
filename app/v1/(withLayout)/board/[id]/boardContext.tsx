@@ -44,36 +44,7 @@ export const defaultBoard: Board = {
   title: "",
   description: "",
   collumn_quantity: 0,
-  collumns: [
-    {
-      id: "",
-      name: "",
-      card_quantity: 0,
-      cards: [
-        {
-          id: "",
-          title: "",
-          description: "",
-          startDate: "",
-          endDate: "",
-          status: "PLANNED", 
-          numOfTasks: 0,
-          tasks: [
-            {
-              id: "",
-              title: "",
-              description: "",
-              startDate: "",
-              endDate: "",
-              status: "PLANNED",
-              cardId: "",
-            },
-          ],
-        },
-      ],
-      board_id: "",
-    },
-  ],
+  collumns: [],
 };
 
 type BoardContextType = {

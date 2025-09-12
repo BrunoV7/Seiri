@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="px-8 lg:px-32 flex gap-2 md:gap-8 flex-col md:flex-row">
         <Link className="font-semibold" href="/auth/register">
           <Button
-            size="xl"
+            size="lg"
             type="button"
             className="bg-[#FFE301] text-black hover:bg-[#f5d900] transition-colors w-full"
           >
@@ -27,7 +27,7 @@ export default function Hero() {
         </Link>
         <Link href="/features">
           <Button
-            size="xl"
+            size="lg"
             type="button"
             className="bg-transparent border border-neutral-300 text-neutral-800 hover:bg-neutral-100 transition-colors"
           >

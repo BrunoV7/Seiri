@@ -10,8 +10,10 @@ export default async function Layout({
 }) {
   return (
     <BoardProvider>
-      <BoardNavBar isColab={false} />
-      <main>{children}</main>
+      <div className="h-[100%] flex flex-col">
+        <BoardNavBar isColab={false} />
+        <main className="h-[100%]">{children}</main>
+      </div>
     </BoardProvider>
   );
 }
