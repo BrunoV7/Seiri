@@ -18,7 +18,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Clock, EllipsisVertical, GripVertical, Menu, RefreshCw, Save, SaveAll, XIcon } from "lucide-react";
+import { Car, Clock, EllipsisVertical, GripVertical, Menu, RefreshCw, Save, SaveAll, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import api from "@/lib/api";
@@ -54,9 +54,11 @@ export default function Drawer({ id, title, description }: Props) {
         try {
             const cardToUpdate = updatedCard;
             const response = await api.put(`/api/v1/card/update/${cardToUpdate.id}`, cardToUpdate);
+            console.log("Card atual: ", card);
             console.log(response);
             setCard(response.data);
             toast.success("Card atualizado com sucesso");
+
         } catch (error) {
             toast.error("Erro ao atualizar card");
         }
@@ -109,7 +111,7 @@ export default function Drawer({ id, title, description }: Props) {
                 <SheetContent className="md:w-4/10 max-w-6/10 p-6 overflow-y-scroll">
                     <SheetHeader className="flex flex-row gap-4 justify-between pt-4 pl-4 pr-4 pb-0">
                         <div className="flex flex-col gap-4">
-                            <SheetTitle className="text-2xl md:text-4xl lg:text-5xl font-bold text-wrap tracking-tight">{card.title}</SheetTitle>
+                            <SheetTitle className="text-2xl md:text-4xl lg:text-5xl font-bold text-wrap tracking-tight">{card.title ?? title}</SheetTitle>
                             <SheetDescription className="text-lg text-wrap">
                                 {card.description ?? description}
                             </SheetDescription>
@@ -161,13 +163,16 @@ export default function Drawer({ id, title, description }: Props) {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <Button
-                                        className="w-10 h-10"
-                                        variant="outline"
-                                        onClick={() => card && updateCard(card)}
-                                    >
-                                        <SaveAll />
-                                    </Button>
+                                    <SheetClose asChild>
+                                        <Button
+                                            className="w-10 h-10"
+                                            variant="outline"
+                                            onClick={() => card && updateCard(card)}
+                                        >
+                                            <SaveAll />
+                                        </Button>
+                                    </SheetClose>
+
                                 </TooltipTrigger>
                                 <TooltipContent>
                                     <p>Salvar</p>
