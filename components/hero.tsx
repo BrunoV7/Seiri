@@ -29,7 +29,7 @@ export default function Hero() {
           <Button
             size="lg"
             type="button"
-            className="bg-transparent border border-neutral-300 text-neutral-800 hover:bg-neutral-100 transition-colors"
+            className="bg-transparent border border-neutral-300 text-neutral-800 hover:bg-neutral-100 transition-colors w-full md:w-fit "
           >
             <span className="font-semibold">
               Saiba mais

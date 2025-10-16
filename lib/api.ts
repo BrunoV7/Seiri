@@ -11,7 +11,6 @@ const api = axios.create({
   }
 });
 
-// Interceptor opcional para client-side
 api.interceptors.request.use((config) => {
   if (typeof window !== "undefined") {
     const isPublic = publicUrls.some((path) => config.url?.startsWith(path));

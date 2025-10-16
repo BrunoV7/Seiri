@@ -14,22 +14,38 @@ export async function loadBoard(id: string) {
 export type Task = {
   id: string;
   title: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  status: "PLANNED" | "IN_PROGRESS" | "FINISHED"; 
+  description?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  status: "PLANNED" | "IN_PROGRESS" | "FINISHED" | "PENDING"; 
   cardId: string;
+};
+
+
+export type Status = {
+  id: string;
+  title: string;
+  colorCode: string;
+  boardId: string;
 };
 
 export type Card = {
   id: string;
+  issueKey: string;
   title: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  status: "PLANNED" | "IN_PROGRESS" | "FINISHED";
-  numOfTasks: number;
+  description?: string;
+  body?: string;
+  position: number;
+  priorityLevel?: number;
+  archived: boolean;
+  startDate?: string | null;
+  endDate?: string | null;
+  createdDate: string;
+  updatedDate: string;
+  status?: Status | null;
+  collumnId: string;
   tasks: Task[];
+  numOfTasks: number;
 };
 
 export type Column = {

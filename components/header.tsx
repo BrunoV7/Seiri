@@ -47,7 +47,7 @@ export default function Header() {
             <Button
               size="lg"
               type="button"
-              className="bg-[#FFE301] text-black hover:bg-[#f5d900] transition-colors"
+              className="bg-[#FFE301] text-black hover:bg-[#f5d900] transition-colors hidden md:flex"
             >
               Comece agora
             </Button>
