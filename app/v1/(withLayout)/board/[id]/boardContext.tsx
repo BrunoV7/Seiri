@@ -37,6 +37,7 @@ export type Board = {
   description: string;
   collumn_quantity: number;
   collumns: Column[];
+  statuses?: { id: string; title: string, colorCode: string, boardId: string }[];
 };
 
 export const defaultBoard: Board = {
@@ -45,6 +46,7 @@ export const defaultBoard: Board = {
   description: "",
   collumn_quantity: 0,
   collumns: [],
+  statuses: [],
 };
 
 type BoardContextType = {

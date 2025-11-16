@@ -6,7 +6,7 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import api from "@/lib/api";
 import { toast } from "sonner";
 import { useBoardContext } from "@/app/v1/(withLayout)/board/[id]/boardContext";
-import { Board } from "@/app/v1/(withLayout)/board/service/board";
+import type { Board } from "@/app/v1/(withLayout)/board/[id]/boardContext";
 import {
   ChevronFirst,
   ChevronLeft,
@@ -76,6 +76,8 @@ export default function BoardNavBar({
       } catch (error) {
         toast.error("Algo deu errado ao carregar o board.");
       }
+      console.log("Board carregado");
+      console.log(board)
     }
 
     async function fetchUser() {
@@ -121,7 +123,8 @@ export default function BoardNavBar({
     }
   };
 
-  if (!board) return <LoadingSkeleton />;
+  // Verifica se o board foi realmente carregado (tem um ID válido)
+  if (!board || !board.id) return <LoadingSkeleton />;
 
   return (
     <div className="w-full bg-white border-b border-slate-200">
@@ -140,13 +143,12 @@ export default function BoardNavBar({
             </Button>
           </Link>
           {/* Board Info */}
-          {board && (
-            <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
-              <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">{board.title.charAt(0)}</span>
-              </div>
-              <div className="flex flex-col leading-tight max-w-[300px] truncate">
-                {isClicked ? (
+          <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
+            <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">{board.title.charAt(0)}</span>
+            </div>
+            <div className="flex flex-col leading-tight max-w-[300px] truncate">
+              {isClicked ? (
                     <input
                       className="text-lg font-semibold truncate border-0 bg-transparent outline-none px-1 w-full"
                       type="text"
@@ -176,7 +178,6 @@ export default function BoardNavBar({
                 <p className="text-sm text-slate-500 truncate">{board.description}</p>
               </div>
             </div>
-          )}
         </div>
 
         {/* Center Section - Search */}

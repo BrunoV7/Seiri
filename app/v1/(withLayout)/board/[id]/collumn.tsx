@@ -117,13 +117,8 @@ export default function Column({ id, name, card_quantity, cards }: ColumnProps) 
             {/* Lista de cards */}
             <div className="flex flex-col space-y-2">
                 {cards.map((card) => (
-                    <Drawer key={card.id} id={card.id} title={card.title} description={card.description}/>
+                    <Drawer key={card.id} id={card.id} />
                 ))}
-                    {/* 
-                        Logica antiga de card, manter como referência
-                    <CardOld key={card.id} id={card.id} title={card.title} description={card.description} /> 
-                    
-                    */}
                 {/* Criar card */}
                 <div ref={cardRef} className="w-full">
                     {isCreatingCard ? (
