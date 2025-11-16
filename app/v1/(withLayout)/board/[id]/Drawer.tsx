@@ -58,7 +58,7 @@ export default function Drawer({ id }: Props) {
             </SheetTrigger>
             <SheetContent className="md:w-4/10 max-w-6/10 p-6 overflow-y-scroll">
                 <SheetHeader className="flex flex-row gap-4 justify-between pt-4 pl-4 pr-4 pb-0">
-                    <DrawerHeader card={card} />
+                    <DrawerHeader props={card}/>
                     <DrawerOptions card={card} updateCard={updateCard} />
                 </SheetHeader>
 
