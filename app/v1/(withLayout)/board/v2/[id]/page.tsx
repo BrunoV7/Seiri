@@ -1,5 +1,5 @@
 "use client";
-import { useBoardContext } from "./context/boardContextProvider";
+
 import { useBoardStore } from "./store/useBoardStore";
 
 export default function Board() {

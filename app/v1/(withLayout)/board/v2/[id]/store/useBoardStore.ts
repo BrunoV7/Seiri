@@ -39,7 +39,7 @@ export const useBoardStore = create<BoardState>()(
             const board = get().board;
             const id = board?.id;
             if (!id) {
-                return
+                return;
             }
             await get().fetchBoard(id);
         },

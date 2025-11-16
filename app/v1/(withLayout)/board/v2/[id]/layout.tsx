@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import { useBoardStore } from "./store/useBoardStore";
 import { useEffect } from "react";
+import BoardNavBar from "./components/navbar";
 export default function Layout({ children }: { children: React.ReactNode }) {
     const params = useParams();
     const id = params.id as string;
@@ -17,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     return (
         <div>
-            <h1>Board Layout for ID: {id}</h1>
+            <BoardNavBar />
             {/* Additional layout components can be added here */}
             {children}
         </div>
