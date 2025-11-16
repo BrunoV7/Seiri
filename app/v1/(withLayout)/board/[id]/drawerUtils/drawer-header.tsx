@@ -7,11 +7,11 @@ import { Board, useBoardContext } from "../boardContext";
 import api from "@/lib/api";
 import { toast } from "sonner";
 
-export default function DrawerHeader({ props }: { props: any }) {
+export default function DrawerHeader({ selectedCard }: { selectedCard: any }) {
     const [isTitleClicked, setIsTitleClicked] = React.useState(false);
-    const { card, setCard } = useCard(props.id);
+    const { card, setCard } = useCard(selectedCard.id);
     const { updateCard } = useUpdateCard(setCard);
-    const [tempTitle, setTempTitle] = React.useState(props.title);
+    const [tempTitle, setTempTitle] = React.useState(selectedCard.title);
     const { board, setBoard } = useBoardContext();
 
     React.useEffect(() => {
@@ -25,12 +25,9 @@ export default function DrawerHeader({ props }: { props: any }) {
         const res = await api.get(`/api/v1/board/find/full/${board.id}`);
         const data: Board = res.data;
         setBoard(data);
-        console.log(data);
       } catch (error) {
         toast.error("Algo deu errado ao carregar o board.");
       }
-      console.log("Board carregado");
-      console.log(board)
     }
 
     const handleSave = React.useCallback(() => {
