@@ -32,7 +32,7 @@ export default function BoardGrid({ searchQuery = "", viewMode = "grid" }: Board
   useEffect(() => {
     const loadBoards = async () => {
       try {
-        const response = await api.get("/api/v1/board/find/all");
+        const response = await api.get("/api/board/v1/find/all");
         setBoards(response.data);
         setIsLoading(false);
       } catch (error: any) {

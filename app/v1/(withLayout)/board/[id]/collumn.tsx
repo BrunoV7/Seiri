@@ -70,7 +70,7 @@ export default function Column({ id, name, card_quantity, cards }: ColumnProps) 
                 statusId: undefined,
             };
 
-            const response = await api.post(`/api/v1/card/new/${id}`, card);
+            const response = await api.post(`/api/card/v1/new/${id}`, card);
 
             const newCard: Card = {
                 id: response.data.id,

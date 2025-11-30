@@ -20,15 +20,15 @@ export default function DrawerHeader({ selectedCard }: { selectedCard: any }) {
         }
     }, [card?.title]);
 
-    async function fetchBoard() {
-      try {
-        const res = await api.get(`/api/v1/board/find/full/${board.id}`);
-        const data: Board = res.data;
-        setBoard(data);
-      } catch (error) {
-        toast.error("Algo deu errado ao carregar o board.");
-      }
-    }
+        async function fetchBoard() {
+            try {
+                const res = await api.get(`/api/board/v1/find/full/${board.id}`);
+                const data: Board = res.data;
+                setBoard(data);
+            } catch (error) {
+                toast.error("Algo deu errado ao carregar o board.");
+            }
+        }
 
     const handleSave = React.useCallback(() => {
         setIsTitleClicked(false);

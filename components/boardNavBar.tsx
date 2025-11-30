@@ -67,9 +67,9 @@ export default function BoardNavBar({
   useEffect(() => {}, []);
 
   useEffect(() => {
-    async function fetchBoard() {
+        async function fetchBoard() {
       try {
-        const res = await api.get(`/api/v1/board/find/full/${id}`);
+        const res = await api.get(`/api/board/v1/find/full/${id}`);
         const data: Board = res.data;
         setBoard(data);
         console.log(data);
@@ -110,9 +110,9 @@ export default function BoardNavBar({
     if (id) fetchBoard();
   }, [id, router]);
 
-  const handleTitleChange = async () => {
+    const handleTitleChange = async () => {
     try {
-      const res = await api.put("/api/v1/board/edit/" + board.id, board);
+      const res = await api.put("/api/board/v1/edit/" + board.id, board);
       const data: Board = res.data;
       setBoard(data);
       console.log(board);

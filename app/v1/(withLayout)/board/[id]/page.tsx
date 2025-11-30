@@ -41,7 +41,7 @@ export default function Board() {
     setIsLoadingCreateColumn(true);
 
     try {
-      const response = await api.post(`/api/v1/collumn/new/${board.id}`, {
+      const response = await api.post(`/api/collumn/v1/new/${board.id}`, {
         name: newColumnName,
       });
 
