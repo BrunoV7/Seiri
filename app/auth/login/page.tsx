@@ -46,7 +46,7 @@ export default function Login() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
     try {
-      const response = await api.post("/api/auth/v1/login", data);
+      const response = await api.post("/auth/v1/login", data);
 
       const { token, user } = response.data;
       Cookies.set("token", token, {

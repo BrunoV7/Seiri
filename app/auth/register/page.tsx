@@ -48,7 +48,7 @@ export default function RegisterPage() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
     try {
-      const response = await api.post("/api/auth/v1/register", {
+      const response = await api.post("/auth/v1/register", {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,

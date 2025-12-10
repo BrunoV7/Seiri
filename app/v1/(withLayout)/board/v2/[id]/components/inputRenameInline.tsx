@@ -18,7 +18,6 @@ export default function InputRename({ value, onChange }: InputRenameProps) {
     }
   }, [editing]);
 
-  // Update local value when prop changes
   useEffect(() => {
     setLocalValue(value);
   }, [value]);
@@ -28,7 +27,7 @@ export default function InputRename({ value, onChange }: InputRenameProps) {
     if (trimmed && trimmed !== value) {
       onChange(trimmed);
     }
-    setLocalValue(value); // Reset to original if cancelled
+    setLocalValue(value);
     setEditing(false);
   };
 

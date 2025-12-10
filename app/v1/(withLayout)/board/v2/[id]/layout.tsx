@@ -17,9 +17,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <div>
+        <div className="bg-[#F2F2F7] h-dvh w-full">
             <BoardNavBar />
-            {/* Additional layout components can be added here */}
+            {/* Additional layout components can be added here */} 
             {children}
         </div>
     );
