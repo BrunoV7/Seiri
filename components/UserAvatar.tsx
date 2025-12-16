@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { PlusIcon } from "lucide-react";
+import { useEffect } from "react";
 
 const classStyle = "inline-flex h-7 w-7 select-none items-center justify-center overflow-hidden rounded-full align-middle bg-slate-200";
 
@@ -13,31 +14,30 @@ export default function UserAvatar({
   user,
   className
 }: {
-  user?: { firstName: string; lastName: string; avatarUrl?: string } | null;
+  user?: { firstName: string; lastName: string; avatar_url?: string } | null;
   className?: string;
 }) {
   const initials = user
     ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`
     : <PlusIcon className="h-4 w-4"></PlusIcon>;
 
-  if(user == null){
+
+  useEffect(() => {
+    // This effect is just to demonstrate that the initials are computed correctly
+    console.log("User initials:", initials);
+    console.log("User data:", user);
+  }, [user]);
+
+  if (user == null) {
     return (
-        <Tooltip>
-      <TooltipTrigger>
-        <Avatar.Root className={cn(className, classStyle)}>
-          <Avatar.Fallback
-            className="flex h-full w-full items-center justify-center bg-slate-900 text-xs font-medium text-white"
-            delayMs={600}
-          >
-            {initials}
-          </Avatar.Fallback>
-        </Avatar.Root>
-         <TooltipContent>
-            <p>Adicionar usuário</p>
-            <p className="text-[8px]">Desculpe essa feature ainda não está pronta</p>
-        </TooltipContent>
-      </TooltipTrigger>
-    </Tooltip>
+      <Avatar.Root className={cn(className, classStyle)}>
+        <Avatar.Fallback
+          className="flex h-full w-full items-center justify-center bg-slate-900 text-xs font-medium text-white"
+          delayMs={600}
+        >
+          {initials}
+        </Avatar.Fallback>
+      </Avatar.Root>
     );
   }
 
@@ -47,7 +47,7 @@ export default function UserAvatar({
         <Avatar.Root className={cn(className, classStyle)}>
           <Avatar.Image
             className="h-full w-full object-cover"
-            src={user?.avatarUrl}
+            src={user?.avatar_url}
             alt={`${user?.firstName} ${user?.lastName}`}
           />
           <Avatar.Fallback
@@ -57,8 +57,8 @@ export default function UserAvatar({
             {initials}
           </Avatar.Fallback>
         </Avatar.Root>
-         <TooltipContent>
-            <p>{user?.firstName} {user?.lastName}</p>
+        <TooltipContent>
+          <p>{user?.firstName} {user?.lastName}</p>
         </TooltipContent>
       </TooltipTrigger>
     </Tooltip>
