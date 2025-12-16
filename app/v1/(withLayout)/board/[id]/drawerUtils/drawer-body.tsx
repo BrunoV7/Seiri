@@ -27,7 +27,7 @@ export default function DrawerBody({ card, setCard }: { card: any, setCard: any 
             return;
         }
         try {
-            const response = await api.post(`/api/v1/card/status/create/${board.id}`, {
+            const response = await api.post(`/api/card/v1/status/create/${board.id}`, {
                 title: name,
                 colorCode: "#FFF8DB"
             });
@@ -57,7 +57,7 @@ export default function DrawerBody({ card, setCard }: { card: any, setCard: any 
         try {
             if (!card) return;
 
-            const response = await api.put(`/api/v1/card/update/${card.id}/status/${statusId}`, {
+            const response = await api.put(`/api/card/v1/update/${card.id}/status/${statusId}`, {
                 statusId
             });
             setCard(response.data);

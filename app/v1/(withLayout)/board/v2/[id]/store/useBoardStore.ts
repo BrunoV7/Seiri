@@ -13,7 +13,8 @@ type BoardState = {
 
     fetchBoard: (id: string) => Promise<void>;
     refetch: () => Promise<void>;
-}
+    updateBoardTitle: (newTitle: string) => void;
+};
 
 export const useBoardStore = create<BoardState>()(
     devtools((set, get) => ({
@@ -21,10 +22,21 @@ export const useBoardStore = create<BoardState>()(
         isLoading: false,
         error: null,
 
+        updateBoardTitle: (newTitle: string) => {
+            const board = get().board;
+            if (!board) {
+                return;
+            }
+
+            
+
+            set({ board: { ...board, title: newTitle } });
+        },
+
         fetchBoard: async (id: string) => {
             try {
                 set({ isLoading: true, error: null });
-                const res = await api.get(`/api/v1/board/find/full/${id}`);
+                const res = await api.get(`/api/board/v1/find/full/${id}`);
                 const data: BoardResponseFullDTO = res.data;
                 set({ board: data });
             } catch (err) {

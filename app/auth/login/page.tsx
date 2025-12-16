@@ -21,10 +21,12 @@ import React from "react";
 import api from "@/lib/api";
 import Cookies from "js-cookie";
 import { useRouter } from 'next/navigation'
+import { useUserStore } from "@/app/v1/store/useUserStore";
 
 export default function Login() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const router = useRouter();
+  const fetchUser = useUserStore(state => state.fetchUser);
 
   const FormSchema = z.object({
     username: z.string().min(2, {
@@ -46,7 +48,7 @@ export default function Login() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
     try {
-      const response = await api.post("/api/v1/auth/login", data);
+      const response = await api.post("/auth/v1/login", data);
 
       const { token, user } = response.data;
       Cookies.set("token", token, {
@@ -54,6 +56,7 @@ export default function Login() {
         secure: false, 
         sameSite: "Lax",
       });
+      fetchUser();
       toast.success("Login realizado com sucesso!");
       router.push('/v1');
     } catch (error: any) {

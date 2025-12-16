@@ -46,7 +46,7 @@ export default function CreateBoardPage() {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         setIsLoading(true);
         try {
-            const response = await api.post("/api/v1/board/new", data);
+            const response = await api.post("/api/board/v1/new", data);
 
             toast.success("Quadro criado com sucesso!");
             router.push(`/v1/board/${response.data.id}`);

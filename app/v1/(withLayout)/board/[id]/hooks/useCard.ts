@@ -15,7 +15,7 @@ export function useCard(id: string) {
 
         const fetchCardDetails = async () => {
             try {
-                const response = await api.get(`/api/v1/card/find/${id}`);
+                const response = await api.get(`/api/card/v1/find/${id}`);
                 setCard(response.data);
             } catch (error) {
                 toast.error("Erro ao carregar detalhes do card");

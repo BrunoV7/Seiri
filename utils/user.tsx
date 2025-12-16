@@ -18,7 +18,7 @@ export class User {
 
 export async function loadUser(): Promise<User | null> {
   try {
-    const response = await api.get("/api/v1/sc/user/info");
+    const response = await api.get("/api/sc/user/v1/info");
     const loadedUser: User = response.data;
     return loadedUser;
   } catch (error) {
