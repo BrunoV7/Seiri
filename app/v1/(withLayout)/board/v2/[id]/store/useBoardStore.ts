@@ -10,6 +10,7 @@ type BoardState = {
     board?: BoardResponseFullDTO;
     isLoading: boolean;
     error: string | null;
+    
 
     fetchBoard: (id: string) => Promise<void>;
     refetch: () => Promise<void>;
@@ -27,9 +28,6 @@ export const useBoardStore = create<BoardState>()(
             if (!board) {
                 return;
             }
-
-            
-
             set({ board: { ...board, title: newTitle } });
         },
 
