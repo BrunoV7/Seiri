@@ -1,5 +1,6 @@
 "use client";
 
+import BoardGrid from "./components/boardgrid";
 import { useBoardStore } from "./store/useBoardStore";
 
 export default function Board() {
@@ -11,5 +12,5 @@ export default function Board() {
         return <div>Loading board...</div>;
     }
 
-    return <div>Board 2 Layout title: {board.title}</div>;
-}                                                     
+    return <BoardGrid />;
+}

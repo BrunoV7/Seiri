@@ -56,7 +56,7 @@ export default function BoardNavBar() {
     }
 
     return (
-        <section className="px-8 py-6 flex flex-row justify-between items-center gap-4">
+        <section className="py-6 flex flex-row justify-between items-center gap-4">
             {/* Left side - Board info */}
             <div className="flex items-center gap-3 px-3 py-2 bg-white rounded-3xl border border-gray-200 shadow-sm min-w-0 flex-1 max-w-2xl m-0">
                 {/* Back button */}
